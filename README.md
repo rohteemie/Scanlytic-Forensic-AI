@@ -545,6 +545,10 @@ This project was inspired by my love for security systems and the need for acces
 
 ---
 
+**Note**: This project is under active development. Features and documentation are subject to change.
+
+---
+
 >
 > **If you find this project useful, please consider giving it a star! ⭐**
 >
