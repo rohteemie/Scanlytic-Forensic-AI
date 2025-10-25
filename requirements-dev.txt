@@ -1,0 +1,17 @@
+# Development Dependencies for Scanlytic-ForensicAI
+
+# Code quality
+pycodestyle>=2.8.0
+autopep8>=1.6.0
+
+# Type checking
+mypy>=0.950
+
+# Documentation
+sphinx>=4.5.0
+sphinx-rtd-theme>=1.0.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=3.0.0
+pytest-mock>=3.6.0

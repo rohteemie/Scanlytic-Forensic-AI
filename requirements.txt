@@ -1,0 +1,8 @@
+# Scanlytic-ForensicAI Core Dependencies
+# Python 3.8+
+
+# Configuration and data handling
+PyYAML>=5.4.0
+
+# Python 2/3 compatibility for YAML
+python-dateutil>=2.8.0
