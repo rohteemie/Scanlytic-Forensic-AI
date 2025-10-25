@@ -430,8 +430,6 @@ Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md) to maintain a w
 
 ## 🔬 Research Background
 
-Scanlytic-ForensicAI is the product of applied research in digital forensics and cybersecurity. This project emerged from investigating:
-
 ### Research Focus Areas
 
 1. **Machine Learning in Forensics**
@@ -457,27 +455,6 @@ The system was developed using:
 - Collaboration with security professionals
 - Iterative testing and validation
 - Benchmarking against existing tools
-
-### Academic Foundation
-
-This work builds upon research in:
-
-- Machine learning for malware detection
-- Static and dynamic analysis techniques
-- Digital forensic triage methodologies
-- Automated threat intelligence
-
-### Publications & Citations
-
-If you use Scanlytic-ForensicAI in your research, please cite:
-
-```bash
-@software{scanlytic_forensicai,
-  author = {Owolabi, Rotimi},
-  title = {Scanlytic-ForensicAI: AI-Driven Forensic Triage System},
-  year = {2025},
-  url = {https://github.com/rohteemie/Scanlytic-Forensic-AI}
-}
 ```
 
 ## 🗺️ Roadmap
@@ -530,7 +507,7 @@ If you use Scanlytic-ForensicAI in your research, please cite:
 **Author**: Rotimi Owolabi
 
 - GitHub: [@rohteemie](https://github.com/rohteemie)
-- Project Link: [https://github.com/rohteemie/Scanlytic-ForensicAI](https://github.com/rohteemie/Scanlytic-ForensicAI)
+- Project Link: [https://github.com/rohteemie/Scanlytic-Forensic-AI](https://github.com/rohteemie/Scanlytic-Forensic-AI)
 - Email: [Contact via GitHub](https://github.com/rohteemie)
 
 ### Support
