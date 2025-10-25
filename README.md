@@ -455,7 +455,6 @@ The system was developed using:
 - Collaboration with security professionals
 - Iterative testing and validation
 - Benchmarking against existing tools
-```
 
 ## 🗺️ Roadmap
 
