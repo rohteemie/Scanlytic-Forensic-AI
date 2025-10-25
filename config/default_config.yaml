@@ -1,0 +1,50 @@
+# Default configuration for Scanlytic-ForensicAI
+# Copy this file to config.yaml and customize as needed
+
+# Analysis settings
+analysis:
+  max_file_size: 104857600  # 100MB in bytes
+  timeout: 300  # seconds
+  parallel_workers: 4
+
+# Feature extraction settings
+features:
+  extract_strings: true
+  string_min_length: 4
+  calculate_entropy: true
+  compute_hashes:
+    - md5
+    - sha1
+    - sha256
+
+# Scoring settings
+scoring:
+  malicious_threshold: 50  # Score threshold for malicious classification
+  high_risk_threshold: 75  # Score threshold for high-risk classification
+
+# Output settings
+output:
+  format: json  # json or csv
+  verbose: true
+  include_features: true
+
+# Logging settings
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file: null  # Path to log file, or null for no file logging
+  console: true
+
+# Privacy and compliance settings (GDPR/ISO)
+privacy:
+  # Do not collect or transmit personal data
+  collect_metadata: true  # File metadata only, no personal data
+  anonymize_paths: false  # Set to true to anonymize file paths in reports
+  data_retention_days: 90  # How long to keep analysis results
+
+# Security settings
+security:
+  # Safe file handling
+  validate_paths: true
+  prevent_path_traversal: true
+  max_string_length: 1000
+  sandbox_analysis: false  # Future: run analysis in sandbox
