@@ -1,0 +1,86 @@
+# Docker Compose configuration for Scanlytic-ForensicAI
+#
+# This file provides an easy way to run Scanlytic-ForensicAI using Docker Compose.
+# It sets up the analysis environment and mounts directories for input files and output reports.
+#
+# Usage:
+#   docker-compose up --build    # Build and start
+#   docker-compose run scanlytic analyze /data  # Run analysis
+
+version: '3.8'
+
+services:
+  scanlytic:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: scanlytic-forensicai:latest
+    container_name: scanlytic-analyzer
+    
+    # Mount volumes for data and reports
+    volumes:
+      # Mount your files to analyze here
+      - ./data:/data:ro  # Read-only for safety
+      # Mount reports directory for output
+      - ./reports:/reports
+      # Optional: Mount custom config
+      # - ./config/custom_config.yaml:/app/config/config.yaml:ro
+    
+    # Environment variables
+    environment:
+      - SCANLYTIC_LOGGING_LEVEL=INFO
+      - PYTHONUNBUFFERED=1
+    
+    # Resource limits (adjust based on your needs)
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+    
+    # Run in read-only mode for security
+    read_only: false
+    
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    
+    # Drop unnecessary capabilities
+    cap_drop:
+      - ALL
+    cap_add:
+      - DAC_READ_SEARCH  # Allow reading files
+
+  # Optional: Development environment
+  scanlytic-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: scanlytic-forensicai:dev
+    container_name: scanlytic-dev
+    
+    volumes:
+      # Mount source code for development
+      - .:/app
+      - ./data:/data
+      - ./reports:/reports
+    
+    environment:
+      - SCANLYTIC_LOGGING_LEVEL=DEBUG
+      - PYTHONUNBUFFERED=1
+    
+    # Keep container running for development
+    command: tail -f /dev/null
+    
+    # Interactive mode
+    stdin_open: true
+    tty: true
+
+volumes:
+  data:
+    driver: local
+  reports:
+    driver: local
