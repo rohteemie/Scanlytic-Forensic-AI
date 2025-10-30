@@ -64,6 +64,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/_static/
+docs/_templates/
 
 # PyBuilder
 target/
@@ -133,11 +135,11 @@ Thumbs.db
 *.pyc
 config/config.yaml
 models/*.pkl
-data/
+data/*
+!data/.gitkeep
 reports/
 *.csv
 *.json
 *.log
 test_files/
 note.txt
-
