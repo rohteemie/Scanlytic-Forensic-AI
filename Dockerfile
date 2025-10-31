@@ -1,5 +1,5 @@
 # Scanlytic-ForensicAI Dockerfile
-# 
+#
 # This Dockerfile creates a containerized environment for running
 # Scanlytic-ForensicAI for digital forensic file analysis.
 #
@@ -19,10 +19,10 @@ WORKDIR /app
 # libmagic1: Required for python-magic (file type detection)
 # file: Provides the magic database
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    libmagic1 \
-    file && \
-    rm -rf /var/lib/apt/lists/*
+  apt-get install -y --no-install-recommends \
+  libmagic1 \
+  file && \
+  rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for better layer caching
 COPY requirements.txt .
