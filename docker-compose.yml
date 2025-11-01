@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile
     image: scanlytic-forensicai:latest
     container_name: scanlytic-analyzer
-    
+
     # Mount volumes for data and reports
     volumes:
       # Mount your files to analyze here
@@ -25,12 +25,12 @@ services:
       - ./reports:/reports
       # Optional: Mount custom config
       # - ./config/custom_config.yaml:/app/config/config.yaml:ro
-    
+
     # Environment variables
     environment:
       - SCANLYTIC_LOGGING_LEVEL=INFO
       - PYTHONUNBUFFERED=1
-    
+
     # Resource limits (adjust based on your needs)
     deploy:
       resources:
@@ -40,14 +40,14 @@ services:
         reservations:
           cpus: '0.5'
           memory: 512M
-    
+
     # Run in read-only mode for security
     read_only: false
-    
+
     # Security options
     security_opt:
       - no-new-privileges:true
-    
+
     # Drop unnecessary capabilities
     cap_drop:
       - ALL
@@ -61,20 +61,20 @@ services:
       dockerfile: Dockerfile
     image: scanlytic-forensicai:dev
     container_name: scanlytic-dev
-    
+
     volumes:
       # Mount source code for development
       - .:/app
       - ./data:/data
       - ./reports:/reports
-    
+
     environment:
       - SCANLYTIC_LOGGING_LEVEL=DEBUG
       - PYTHONUNBUFFERED=1
-    
+
     # Keep container running for development
     command: tail -f /dev/null
-    
+
     # Interactive mode
     stdin_open: true
     tty: true

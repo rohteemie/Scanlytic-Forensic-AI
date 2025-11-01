@@ -49,16 +49,6 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
 # Scrapy stuff:
 .scrapy
 
@@ -130,6 +120,23 @@ dmypy.json
 # OS
 .DS_Store
 Thumbs.db
+
+# CI/CD
+.github/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Data and models (will be mounted as volumes)
+data/*
+models/*.pkl
+
+# README and docs (not needed in container)
+*.md
+!CONTRIBUTING.md
+!LICENSE
 
 # Project specific
 *.pyc

@@ -13,6 +13,7 @@ This guide is for **non-technical users** who need to use Scanlytic-ForensicAI b
 Imagine you have a huge box of mixed items (files on a computer), and you need to find which ones might be dangerous or important. Going through each item by hand would take forever.
 
 Scanlytic-ForensicAI is like a smart sorting machine that:
+
 1. Looks at each item (file)
 2. Identifies what it is
 3. Checks for warning signs
@@ -22,6 +23,7 @@ Scanlytic-ForensicAI is like a smart sorting machine that:
 **Real-World Analogy:**
 
 Think of it like airport security scanning luggage:
+
 - X-ray machine (Scanlytic) scans each bag (file)
 - Identifies contents (file type identification)
 - Flags suspicious items (malicious scoring)
@@ -51,18 +53,22 @@ Docker is like a pre-packaged box that contains everything needed to run the sof
 #### Step 1: Install Docker
 
 **Windows:**
-1. Download Docker Desktop from [docker.com](https://www.docker.com/products/docker-desktop)
+
+1. Download Docker Desktop from [docker.com]
+(<https://www.docker.com/products/docker-desktop>)
 2. Run the installer
 3. Follow the on-screen instructions
 4. Restart your computer if prompted
 
 **Mac:**
+
 1. Download Docker Desktop for Mac from [docker.com](https://www.docker.com/products/docker-desktop)
 2. Open the downloaded file
 3. Drag Docker to your Applications folder
 4. Open Docker from Applications
 
 **Verification:**
+
 - Open Terminal (Mac) or Command Prompt (Windows)
 - Type: `docker --version`
 - You should see something like: `Docker version 20.10.x`
@@ -70,12 +76,14 @@ Docker is like a pre-packaged box that contains everything needed to run the sof
 #### Step 2: Get Scanlytic-ForensicAI
 
 **Option A: Download**
+
 1. Go to [github.com/rohteemie/Scanlytic-ForensicAI](https://github.com/rohteemie/Scanlytic-ForensicAI)
 2. Click the green "Code" button
 3. Click "Download ZIP"
 4. Extract the ZIP file to a folder (e.g., Desktop)
 
 **Option B: Using Git** (if you have it installed)
+
 1. Open Terminal/Command Prompt
 2. Type: `git clone https://github.com/rohteemie/Scanlytic-ForensicAI.git`
 3. Press Enter
@@ -84,36 +92,44 @@ Docker is like a pre-packaged box that contains everything needed to run the sof
 
 1. Open Terminal/Command Prompt
 2. Navigate to the Scanlytic folder:
-   ```
+
+   ```bash
    cd path/to/Scanlytic-ForensicAI
    ```
+
    (Replace `path/to/` with the actual location)
 
 3. Build the image:
-   ```
+
+   ```bash
    docker build -t scanlytic .
    ```
+
    This takes a few minutes the first time.
 
 #### Step 4: Analyze Files
 
 **Analyze a Single File:**
-```
+
+```bash
 docker run -v /path/to/files:/data scanlytic analyze /data/filename
 ```
 
 **Example:**
-```
+
+```bash
 docker run -v C:\Users\John\Documents:/data scanlytic analyze /data/suspicious.exe
 ```
 
 **Analyze a Folder:**
-```
+
+```bash
 docker run -v /path/to/folder:/data scanlytic analyze /data --recursive
 ```
 
 **Save Results to a Report:**
-```
+
+```bash
 docker run -v /path/to/files:/data -v /path/to/reports:/reports scanlytic analyze /data -o /reports/report.json
 ```
 
@@ -124,6 +140,7 @@ If you're comfortable with basic command-line usage:
 #### Step 1: Install Python
 
 **Windows:**
+
 1. Go to [python.org/downloads](https://www.python.org/downloads/)
 2. Download Python 3.8 or higher
 3. Run installer
@@ -132,6 +149,7 @@ If you're comfortable with basic command-line usage:
 
 **Mac:**
 Python is usually pre-installed. To check:
+
 1. Open Terminal
 2. Type: `python3 --version`
 3. If version is below 3.8, install from [python.org](https://www.python.org/downloads/)
@@ -141,40 +159,48 @@ Python is usually pre-installed. To check:
 1. Download Scanlytic-ForensicAI (see Option 1, Step 2 above)
 2. Open Terminal/Command Prompt
 3. Navigate to folder:
-   ```
+
+   ```bash
    cd path/to/Scanlytic-ForensicAI
    ```
+
 4. Install:
-   ```
+
+   ```bash
    pip install -e .
    ```
 
 #### Step 3: Verify Installation
 
 Type:
-```
+
+```bash
 scanlytic --version
 ```
 
 You should see:
-```
+
+```bash
 scanlytic 0.1.0
 ```
 
 #### Step 4: Analyze Files
 
 **Single File:**
-```
+
+```bash
 scanlytic analyze /path/to/file.exe
 ```
 
 **Folder:**
-```
+
+```bash
 scanlytic analyze /path/to/folder --recursive
 ```
 
 **With Report:**
-```
+
+```bash
 scanlytic analyze /path/to/file.exe -o report.json
 ```
 
@@ -186,7 +212,7 @@ scanlytic analyze /path/to/file.exe -o report.json
 
 After analyzing a file, you'll see something like this:
 
-```
+```bash
 === Analysis Results ===
 
 File: document.pdf
@@ -205,13 +231,16 @@ Summary:
 #### What Each Part Means
 
 **File Name:**
+
 - The name of the file you analyzed
 
 **Category:**
+
 - What type of file it is
 - Examples: "Windows Executable", "PDF Document", "Image File"
 
 **Malicious Score:**
+
 - A number from 0 to 100
 - **0-25**: Probably safe (green light)
 - **25-50**: Be careful (yellow light)
@@ -219,10 +248,12 @@ Summary:
 - **75-100**: Very dangerous (red light)
 
 **Risk Level:**
+
 - Simple word: low, medium, high, or critical
 - Based on the score
 
 **Summary:**
+
 - Plain-English explanation
 - Lists specific concerns
 - Gives overall recommendation
@@ -236,11 +267,13 @@ When you save a report, you get a file with detailed information:
 **File:** `report.json`
 
 **What is it?**
+
 - Structured data file
 - Can be imported into other tools
 - Used for automated processing
 
 **Example:**
+
 ```json
 {
   "file_name": "suspicious.exe",
@@ -251,6 +284,7 @@ When you save a report, you get a file with detailed information:
 ```
 
 **When to use:**
+
 - You need to import into another security tool
 - You're doing automated processing
 - You want complete technical details
@@ -260,6 +294,7 @@ When you save a report, you get a file with detailed information:
 **File:** `report.csv`
 
 **What is it?**
+
 - Spreadsheet-compatible file
 - Opens in Excel, Google Sheets, etc.
 - Good for analyzing many files at once
@@ -273,6 +308,7 @@ When you save a report, you get a file with detailed information:
 | file3.zip | Archive | 55.0 | high | Investigate contents |
 
 **When to use:**
+
 - You analyzed many files
 - You want to sort/filter results
 - You need to share with non-technical people
@@ -287,11 +323,14 @@ When you save a report, you get a file with detailed information:
 **Scenario:** You downloaded files from the internet and want to check if they're safe.
 
 **Steps:**
+
 1. Put all downloaded files in one folder (e.g., `Downloads/Check`)
 2. Run analysis:
-   ```
+
+   ```bash
    scanlytic analyze Downloads/Check -o safety-check.csv
    ```
+
 3. Open `safety-check.csv` in Excel
 4. Sort by "Score" (highest to lowest)
 5. Files with score >50: Don't open, delete or submit to IT
@@ -303,11 +342,14 @@ When you save a report, you get a file with detailed information:
 **Scenario:** An employee's computer was compromised. You need to find suspicious files.
 
 **Steps:**
+
 1. Copy suspicious files to investigation folder
 2. Run analysis:
-   ```
+
+   ```bash
    scanlytic analyze incident-files/ --recursive -o incident-report.json
    ```
+
 3. Review files with "critical" or "high" risk first
 4. Document findings for security team
 5. Submit high-risk files for detailed analysis
@@ -317,11 +359,14 @@ When you save a report, you get a file with detailed information:
 **Scenario:** Monthly security audit of file server.
 
 **Steps:**
+
 1. Set up scheduled task (Windows) or cron job (Mac/Linux)
 2. Weekly scan:
-   ```
+
+   ```bash
    scanlytic analyze /file-server/ -o weekly-audit-$(date).csv
    ```
+
 3. Review reports for new high-risk files
 4. Compare with previous weeks to spot changes
 
@@ -330,15 +375,20 @@ When you save a report, you get a file with detailed information:
 **Scenario:** Analyzing evidence for legal case.
 
 **Steps:**
+
 1. Create working copy of evidence (never modify originals!)
 2. Run comprehensive analysis:
-   ```
+
+   ```bash
    scanlytic analyze evidence-copy/ --recursive -o evidence-analysis.json
    ```
+
 3. Generate CSV for easy review:
-   ```
+
+   ```bash
    scanlytic analyze evidence-copy/ --recursive -o evidence-summary.csv
    ```
+
 4. Document all high-risk findings
 5. Maintain chain of custody records
 6. Have technical expert review critical items
@@ -400,21 +450,25 @@ When you save a report, you get a file with detailed information:
 ### Problem: "Command not found" Error
 
 **On Windows:**
-```
+
+```bash
 'scanlytic' is not recognized as an internal or external command
 ```
 
 **Solutions:**
+
 1. Make sure you installed correctly: `pip install -e .`
 2. Try: `python -m scanlytic` instead of `scanlytic`
 3. Check Python is in PATH (reinstall Python with PATH option)
 
 **On Mac/Linux:**
-```
+
+```bash
 bash: scanlytic: command not found
 ```
 
 **Solutions:**
+
 1. Try: `python3 -m scanlytic`
 2. Check installation: `pip3 install -e .`
 3. Add to PATH: `export PATH=$PATH:~/.local/bin`
@@ -422,11 +476,13 @@ bash: scanlytic: command not found
 ### Problem: "Permission Denied" Error
 
 **Error:**
-```
+
+```bash
 PermissionError: [Errno 13] Permission denied
 ```
 
 **Solutions:**
+
 1. Make sure you have read access to the files
 2. On Mac/Linux, use `sudo` if analyzing system files: `sudo scanlytic analyze ...`
 3. On Windows, run Command Prompt as Administrator
@@ -452,11 +508,13 @@ PermissionError: [Errno 13] Permission denied
 **File Flagged as High-Risk but Seems Safe:**
 
 **Possible Reasons:**
+
 1. File is compressed/encrypted (high entropy)
 2. File is a security tool (contains suspicious strings)
 3. False positive
 
 **What to Do:**
+
 1. Check file with antivirus
 2. Research the file online
 3. Consult with IT/security expert
@@ -465,11 +523,13 @@ PermissionError: [Errno 13] Permission denied
 **Safe File Flagged as Low-Risk:**
 
 **Possible Reasons:**
+
 1. Sophisticated malware (designed to evade detection)
 2. New/unknown malware type
 3. Legitimate file
 
 **What to Do:**
+
 1. Don't rely solely on Scanlytic
 2. Use multiple analysis tools
 3. When in doubt, treat as suspicious
@@ -497,11 +557,13 @@ PermissionError: [Errno 13] Permission denied
 ### Privacy Considerations
 
 **File Paths in Reports:**
+
 - Reports include full file paths
 - Be careful when sharing reports (may reveal sensitive folder names)
 - Edit reports before sharing if privacy is a concern
 
 **File Metadata:**
+
 - Reports include file creation dates, sizes, etc.
 - This is standard forensic information
 - Don't share reports if this information is sensitive
@@ -549,6 +611,7 @@ PermissionError: [Errno 13] Permission denied
 **A:** No. Scanlytic is a **triage** tool that helps you identify which files need closer inspection. It should be used **alongside** antivirus, not instead of it.
 
 Think of it this way:
+
 - **Antivirus**: Checks files against known malware signatures
 - **Scanlytic**: Analyzes file characteristics and behavior patterns
 - **Together**: Much more effective than either alone
@@ -556,11 +619,13 @@ Think of it this way:
 ### Q: Can Scanlytic detect all malware?
 
 **A:** No tool can detect 100% of malware. Scanlytic is very good at:
+
 - Identifying suspicious characteristics
 - Flagging potentially dangerous files
 - Prioritizing which files need manual review
 
 But it may miss:
+
 - Brand new, never-seen-before malware
 - Extremely sophisticated attacks
 - Files specifically designed to evade detection
@@ -570,6 +635,7 @@ But it may miss:
 **A:** No. Scanlytic only **reads** files, it never **executes** them. Reading a file is safe, even if it's malicious.
 
 However, good practices:
+
 - Use a dedicated analysis computer
 - Work in a virtual machine if possible
 - Never double-click files you're analyzing
@@ -579,6 +645,7 @@ However, good practices:
 **A:** Current accuracy (rule-based scoring): ~70-80%
 
 This means:
+
 - 7-8 out of 10 high-risk files are actually malicious
 - 2-3 out of 10 are false positives (safe files flagged as risky)
 
@@ -589,11 +656,13 @@ Future versions with machine learning will improve this to 90%+.
 **A:** Scanlytic can be part of a forensic investigation, but:
 
 ✅ **Good for:**
+
 - Initial triage and prioritization
 - Identifying files for deeper analysis
 - Documenting file characteristics
 
 ❌ **Not sufficient alone for:**
+
 - Legal proof of maliciousness
 - Court admissible evidence (without expert testimony)
 - Definitive malware identification
@@ -605,6 +674,7 @@ Future versions with machine learning will improve this to 90%+.
 **A:** Yes! Scanlytic is completely free and open source (MIT License).
 
 You can:
+
 - Use it for any purpose (personal, commercial)
 - Modify it
 - Distribute it
@@ -616,6 +686,7 @@ The only requirement is to keep the license notice.
 **A:** Please report it! We can't fix bugs we don't know about.
 
 To report:
+
 1. Go to [GitHub Issues](https://github.com/rohteemie/Scanlytic-ForensicAI/issues)
 2. Click "New Issue"
 3. Describe:
@@ -629,57 +700,75 @@ To report:
 ## Glossary (Common Terms Explained)
 
 **Analysis**
+
 - The process of examining a file
 
 **Archive**
+
 - A file that contains other files (like ZIP or RAR)
 
 **Binary File**
+
 - A file in computer language (not human-readable text)
 
 **Classification**
+
 - Identifying what type of file something is
 
 **CLI (Command-Line Interface)**
+
 - Text-based way to interact with software
 
 **CSV (Comma-Separated Values)**
+
 - Spreadsheet file format
 
 **Docker**
+
 - Software that packages applications in containers
 
 **Entropy**
+
 - Measure of randomness in a file
 
 **Executable**
+
 - A program that can run on your computer (.exe on Windows)
 
 **Feature Extraction**
+
 - Collecting information about a file
 
 **Forensics**
+
 - Scientific investigation of digital evidence
 
 **Hash**
+
 - Unique "fingerprint" of a file
 
 **JSON (JavaScript Object Notation)**
+
 - Structured data format for computers
 
 **Malware**
+
 - Malicious software (viruses, trojans, etc.)
 
 **Metadata**
+
 - Information about a file (size, date, etc.)
 
 **Risk Level**
+
 - How dangerous a file appears to be
 
 **Score**
+
 - Numerical rating of suspiciousness (0-100)
 
 **Triage**
+
 - Quick initial sorting to prioritize work
 
 ---
@@ -724,6 +813,7 @@ Stay safe! 🔒
 ---
 
 **Need More Help?**
+
 - 📚 Read the [Beginner's Guide](BEGINNERS_GUIDE.md) for technical details
 - 🐛 Report issues on [GitHub](https://github.com/rohteemie/Scanlytic-ForensicAI/issues)
 - 💬 Ask questions in [Discussions](https://github.com/rohteemie/Scanlytic-ForensicAI/discussions)

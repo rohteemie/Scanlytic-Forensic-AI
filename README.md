@@ -10,6 +10,8 @@
 - [Overview](🔍-overview)
 - [Key Features](#key-features)
 - [Problem Statement](#problem-statement)
+- [Installation](#-installation)
+- [Usage](#-usage)
 - [How It Works](#how-it-works)
 - [Technology Stack](#technology-stack)
 - [Project Architecture](#project-architecture)
@@ -17,6 +19,7 @@
 - [Contributing](#contributing)
 - [Research Background](#research-background)
 - [Roadmap](#roadmap)
+- [Liscense](#-license)
 - [Contact](#contact)
 
 ## 🔍 Overview
@@ -91,6 +94,194 @@ Traditional manual triage methods cannot keep pace with these challenges. Securi
 - Scale with growing data volumes
 
 Scanlytic-ForensicAI solves these problems through machine learning-powered automation, enabling faster and more accurate forensic triage.
+
+## 📦 Installation
+
+### Prerequisites
+
+Before installing Scanlytic-ForensicAI, ensure you have:
+
+- Python 3.8 or higher
+- pip (Python package manager)
+- Virtual environment tool (recommended: venv or conda)
+- Git
+- At least 4GB RAM (8GB recommended)
+- 2GB free disk space
+
+### Installation Steps
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/rohteemie/Scanlytic-ForensicAI.git
+cd Scanlytic-ForensicAI
+```
+
+2. **Create Virtual Environment**
+
+```bash
+# Using venv
+python -m venv venv
+
+# Activate on Linux/Mac
+source venv/bin/activate
+
+# Activate on Windows
+venv\Scripts\activate
+```
+
+3. **Install Dependencies**
+
+```bash
+# Install core dependencies
+pip install -r requirements.txt
+
+# Install development dependencies (optional)
+pip install -r requirements-dev.txt
+```
+
+4. **Download Pre-trained Models** (if available)
+
+```bash
+python scripts/download_models.py
+```
+
+5. **Verify Installation**
+
+```bash
+python -m scanlytic --version
+python -m scanlytic --health-check
+```
+
+### Docker Installation (Recommended for Easy Setup)
+
+Docker provides the easiest way to get started with Scanlytic-ForensicAI:
+
+```bash
+# Build Docker image
+docker build -t scanlytic-forensicai .
+
+# Run analysis on a file
+docker run -v /path/to/files:/data scanlytic-forensicai analyze /data/file.exe
+
+# Run analysis on a directory with report output
+docker run -v /path/to/files:/data -v /path/to/reports:/reports \
+  scanlytic-forensicai analyze /data -o /reports/report.json
+```
+
+**For detailed Docker usage**, see the [Docker Guide](docs/DOCKER_GUIDE.md)
+
+**New to Docker or digital forensics?** Check out our comprehensive guides:
+
+- 📚 [Beginner's Guide](docs/BEGINNERS_GUIDE.md) - For students and new programmers
+- 👤 [Non-Technical User Guide](docs/NON_TECHNICAL_GUIDE.md) - For non-technical users
+- 🏗️ [Architecture Guide](docs/ARCHITECTURE.md) - Understanding the system design
+- 💡 [Development Process Guide](docs/DEVELOPMENT_PROCESS.md) - How we built this
+
+## 🚀 Usage
+
+### Basic Usage
+
+#### Command Line Interface
+
+**Analyze a Single File**
+
+```bash
+python -m scanlytic analyze /path/to/suspicious_file.exe
+```
+
+**Analyze a Directory**
+
+```bash
+python -m scanlytic analyze /path/to/directory --recursive
+```
+
+**Batch Processing with Custom Output**
+
+```bash
+python -m scanlytic analyze /path/to/files \
+    --output report.json \
+    --format json \
+    --threshold 50 \
+    --verbose
+```
+
+### Advanced Usage
+
+#### Custom Configuration
+
+```bash
+python -m scanlytic analyze /path/to/files \
+    --config custom_config.yaml \
+    --model custom_model.pkl \
+    --workers 4
+```
+
+#### Generate Detailed Report
+
+```bash
+python -m scanlytic analyze /path/to/files \
+    --report-type detailed \
+    --output-format html \
+    --include-visuals
+```
+
+### Python API
+
+```python
+from scanlytic import ForensicAnalyzer
+
+# Initialize analyzer
+analyzer = ForensicAnalyzer(
+    model_path='models/classifier.pkl',
+    config='config.yaml'
+)
+
+# Analyze single file
+result = analyzer.analyze_file('/path/to/file.exe')
+print(f"Classification: {result.classification}")
+print(f"Malicious Score: {result.score}")
+print(f"Features: {result.features}")
+
+# Analyze directory
+results = analyzer.analyze_directory(
+    '/path/to/directory',
+    recursive=True,
+    threshold=50
+)
+
+# Generate report
+analyzer.generate_report(
+    results,
+    output_path='report.html',
+    format='html'
+)
+```
+
+### Example Output
+
+```json
+{
+  "file": "suspicious.exe",
+  "classification": "malicious",
+  "malicious_score": 87.3,
+  "confidence": 0.94,
+  "features": {
+    "file_size": 245760,
+    "entropy": 7.2,
+    "file_type": "PE32 executable",
+    "sections": 5,
+    "imports": ["kernel32.dll", "advapi32.dll"],
+    "suspicious_strings": ["cmd.exe", "powershell", "download"]
+  },
+  "threat_indicators": [
+    "High entropy suggests packing/encryption",
+    "Suspicious API calls detected",
+    "Contains obfuscated strings"
+  ],
+  "recommendation": "Quarantine and investigate further"
+}
+```
 
 ## 🔬 How It Works
 
@@ -500,6 +691,26 @@ The system was developed using:
 - Mobile application for field analysis
 - Automated threat hunting capabilities
 - Community-driven threat intelligence sharing
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+```bash
+MIT License
+
+Copyright (c) 2025 Rotimi Owolabi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+```
 
 ## 📧 Contact
 
