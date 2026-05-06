@@ -46,6 +46,13 @@ class Config:
             'verbose': True,
             'include_features': True
         },
+        'ai': {
+            'enabled': False,
+            'backend': 'local',
+            'model_path': None,
+            'score_weight': 0.3,
+            'confidence_threshold': 0.6
+        },
         'logging': {
             'level': 'INFO',
             'file': None,

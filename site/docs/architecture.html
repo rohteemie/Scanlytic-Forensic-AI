@@ -33,8 +33,8 @@
           <div class="card">
             <h3>Core pipeline stages</h3>
             <p>
-              Intake and validation, classification, feature extraction, scoring, and reporting
-              are executed in sequence to preserve analysis integrity.
+              Intake and validation, classification, feature extraction, optional AI scoring,
+              scoring, and reporting are executed in sequence to preserve analysis integrity.
             </p>
           </div>
           <div class="card">
@@ -64,6 +64,10 @@
           <div class="card">
             <h3>features/</h3>
             <p>Extracts hashes, entropy, headers, strings, and metadata.</p>
+          </div>
+          <div class="card">
+            <h3>ai/</h3>
+            <p>Optional local model inference for AI scoring and labels.</p>
           </div>
           <div class="card">
             <h3>reporting/</h3>

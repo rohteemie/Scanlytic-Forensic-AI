@@ -28,6 +28,14 @@ output:
   verbose: true
   include_features: true
 
+# AI integration settings (opt-in)
+ai:
+  enabled: false
+  backend: local
+  model_path: null
+  score_weight: 0.3
+  confidence_threshold: 0.6
+
 # Logging settings
 logging:
   level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL

@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Optional
 
 from scanlytic import __version__
+from scanlytic.ai.training import train_baseline_model, train_from_csv
 from scanlytic.core.analyzer import ForensicAnalyzer
 from scanlytic.reporting.generator import ReportGenerator
 from scanlytic.utils.config import Config
@@ -99,6 +100,64 @@ def create_parser() -> argparse.ArgumentParser:
         help='Malicious score threshold (default: 50)'
     )
 
+    analyze_parser.add_argument(
+        '--ai-enabled',
+        action='store_true',
+        help='Enable optional AI scoring'
+    )
+
+    analyze_parser.add_argument(
+        '--ai-model',
+        type=str,
+        help='Path to local AI model file (joblib)'
+    )
+
+    analyze_parser.add_argument(
+        '--ai-weight',
+        type=float,
+        help='Blend weight for AI score (0.0 - 1.0)'
+    )
+
+    analyze_parser.add_argument(
+        '--ai-backend',
+        type=str,
+        choices=['local'],
+        default=None,
+        help='AI backend (default: local)'
+    )
+
+    # AI training command
+    train_parser = subparsers.add_parser(
+        'train-ai',
+        help='Train a local AI model for scoring'
+    )
+
+    train_parser.add_argument(
+        '--csv',
+        type=str,
+        help='Path to CSV training dataset'
+    )
+
+    train_parser.add_argument(
+        '--label',
+        type=str,
+        default='label',
+        help='Label column name in CSV (default: label)'
+    )
+
+    train_parser.add_argument(
+        '--baseline',
+        action='store_true',
+        help='Train the built-in baseline model'
+    )
+
+    train_parser.add_argument(
+        '--output',
+        type=str,
+        default='models/ai_baseline.joblib',
+        help='Output path for model file'
+    )
+
     return parser
 
 
@@ -123,6 +182,22 @@ def analyze_command(args: argparse.Namespace) -> int:
         # Override config with CLI arguments
         if hasattr(args, 'threshold'):
             config.config['scoring']['malicious_threshold'] = args.threshold
+
+        if args.ai_enabled:
+            config.config.setdefault('ai', {})
+            config.config['ai']['enabled'] = True
+
+        if args.ai_model:
+            config.config.setdefault('ai', {})
+            config.config['ai']['model_path'] = args.ai_model
+
+        if args.ai_weight is not None:
+            config.config.setdefault('ai', {})
+            config.config['ai']['score_weight'] = args.ai_weight
+
+        if args.ai_backend:
+            config.config.setdefault('ai', {})
+            config.config['ai']['backend'] = args.ai_backend
 
         # Initialize analyzer
         analyzer = ForensicAnalyzer(config)
@@ -179,6 +254,23 @@ def analyze_command(args: argparse.Namespace) -> int:
         return 1
 
 
+def train_ai_command(args: argparse.Namespace) -> int:
+    """Train a local AI model from baseline or CSV data."""
+    try:
+        if args.baseline or not args.csv:
+            output = train_baseline_model(args.output)
+            print(f"Baseline AI model saved to: {output}")
+            return 0
+
+        output = train_from_csv(args.csv, args.label, args.output)
+        print(f"AI model trained from CSV saved to: {output}")
+        return 0
+    except Exception as exc:
+        logger.error(f"AI training failed: {exc}")
+        print(f"\nError: {exc}")
+        return 1
+
+
 def main() -> int:
     """
     Main entry point for CLI.
@@ -195,6 +287,9 @@ def main() -> int:
 
     if args.command == 'analyze':
         return analyze_command(args)
+
+    if args.command == 'train-ai':
+        return train_ai_command(args)
 
     return 0
 

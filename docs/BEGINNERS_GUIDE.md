@@ -69,7 +69,7 @@ Scanlytic-ForensicAI automates the initial sorting ("triage") process using:
 - **File analysis**: Examining file properties and contents
 - **Pattern recognition**: Identifying suspicious characteristics
 - **Scoring system**: Ranking files by potential danger
-- **Machine Learning** (future): Learning from known malicious files
+- **Optional AI scoring**: Local models can add an extra signal (opt-in)
 
 ---
 
@@ -124,6 +124,23 @@ Strings found: "cmd.exe", "password", "download"
 - Contains "password" → Suspicious (+10 points)
 - Is an executable (.exe) → Risky by nature (+20 points)
 - **Total Score**: 65/100 → **HIGH RISK**
+
+### Step 3b: Optional AI Scoring (Opt-In)
+
+If enabled, Scanlytic can also run a local AI model to produce an AI score
+and label. This does not replace the rule-based score; it blends with it.
+
+```bash
+scanlytic analyze /path/to/file.exe --ai-enabled \
+  --ai-model models/ai_baseline.joblib --ai-weight 0.3
+```
+
+You can also train a local model from a CSV dataset:
+
+```bash
+scanlytic train-ai --csv data/training.csv --label label \
+  --output models/ai_custom.joblib
+```
 
 ### Step 4: Reporting
 

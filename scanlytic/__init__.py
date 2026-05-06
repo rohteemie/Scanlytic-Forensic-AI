@@ -17,10 +17,12 @@ from scanlytic.core.analyzer import ForensicAnalyzer
 from scanlytic.core.classifier import FileClassifier
 from scanlytic.features.extractor import FeatureExtractor
 from scanlytic.scoring.scorer import MaliciousScorer
+from scanlytic.ai.engine import AIEngine
 
 __all__ = [
     'ForensicAnalyzer',
     'FileClassifier',
     'FeatureExtractor',
     'MaliciousScorer',
+    'AIEngine',
 ]

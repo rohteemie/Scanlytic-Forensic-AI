@@ -212,30 +212,41 @@ python -m scanlytic analyze /path/to/files \
 
 ```bash
 python -m scanlytic analyze /path/to/files \
-    --config custom_config.yaml \
-    --model custom_model.pkl \
-    --workers 4
+  --config custom_config.yaml \
+  --threshold 60 \
+  --verbose
 ```
 
-#### Generate Detailed Report
+#### Enable Optional AI Scoring (Local)
 
 ```bash
 python -m scanlytic analyze /path/to/files \
-    --report-type detailed \
-    --output-format html \
-    --include-visuals
+  --ai-enabled \
+  --ai-model models/ai_baseline.joblib \
+  --ai-weight 0.3
+```
+
+Generate a baseline local model (optional):
+
+```bash
+.venv/bin/python scripts/train_ai_baseline.py --output models/ai_baseline.joblib
+```
+
+Or train directly from a CSV dataset:
+
+```bash
+python -m scanlytic train-ai --csv data/training.csv --label label \
+  --output models/ai_custom.joblib
 ```
 
 ### Python API
 
 ```python
 from scanlytic import ForensicAnalyzer
+from scanlytic.reporting.generator import ReportGenerator
 
 # Initialize analyzer
-analyzer = ForensicAnalyzer(
-    model_path='models/classifier.pkl',
-    config='config.yaml'
-)
+analyzer = ForensicAnalyzer()
 
 # Analyze single file
 result = analyzer.analyze_file('/path/to/file.exe')
@@ -246,16 +257,12 @@ print(f"Features: {result.features}")
 # Analyze directory
 results = analyzer.analyze_directory(
     '/path/to/directory',
-    recursive=True,
-    threshold=50
+  recursive=True
 )
 
 # Generate report
-analyzer.generate_report(
-    results,
-    output_path='report.html',
-    format='html'
-)
+reporter = ReportGenerator()
+reporter.generate_report(results, 'report.json', format='json')
 ```
 
 ### Example Output
@@ -333,16 +340,12 @@ analyzer.generate_report(
    - Content-based features (entropy, byte distribution)
    - Structural features (PE headers, file signatures)
    - Behavioral indicators (strings, imports, exports)
-4. **ML Classification**: Trained models classify files into categories:
-   - Benign
-   - Suspicious
-   - Malicious
-   - Unknown
+4. **Optional AI Scoring (opt-in)**: Local models can provide an AI score and
+  label for additional signal when enabled in configuration.
 5. **Scoring Algorithm**: Assigns a malicious intent score (0-100) based on:
-   - Classification confidence
-   - Feature weights
-   - Known threat patterns
-   - Historical data
+  - Rule-based feature weights
+  - Optional AI score blending (configurable)
+  - Known threat patterns
 6. **Result Aggregation**: Compiles findings into comprehensive reports with:
    - File classifications
    - Risk scores
@@ -518,6 +521,14 @@ classification:
 scoring:
   malicious_threshold: 50
   high_risk_threshold: 75
+
+# AI (opt-in)
+ai:
+  enabled: false
+  backend: "local"
+  model_path: null
+  score_weight: 0.3
+  confidence_threshold: 0.6
   weight_features: true
 
 # Output

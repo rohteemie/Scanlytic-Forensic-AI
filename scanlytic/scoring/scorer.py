@@ -40,19 +40,23 @@ class MaliciousScorer:
     }
 
     def __init__(self, malicious_threshold: int = 50,
-                 high_risk_threshold: int = 75):
+                 high_risk_threshold: int = 75,
+                 ai_score_weight: float = 0.3):
         """
         Initialize the malicious scorer.
 
         Args:
             malicious_threshold: Threshold for malicious classification
             high_risk_threshold: Threshold for high-risk classification
+            ai_score_weight: Weight for AI score blending (0.0 - 1.0)
         """
         self.malicious_threshold = malicious_threshold
         self.high_risk_threshold = high_risk_threshold
+        self.ai_score_weight = min(max(ai_score_weight, 0.0), 1.0)
 
     def score(self, features: Dict[str, Any],
-              classification: Dict[str, str]) -> Dict[str, Any]:
+              classification: Dict[str, str],
+              ai_result: Dict[str, Any] = None) -> Dict[str, Any]:
         """
         Calculate malicious intent score for a file.
 
@@ -102,17 +106,29 @@ class MaliciousScorer:
             )
 
             # Calculate weighted total score
-            total_score = self._calculate_total_score(scores)
+            rule_score = self._calculate_total_score(scores)
+            total_score = rule_score
+
+            ai_score = None
+            if ai_result and ai_result.get('score') is not None:
+                ai_score = float(ai_result['score'])
+                total_score = (
+                    (1 - self.ai_score_weight) * rule_score
+                    + self.ai_score_weight * ai_score
+                )
 
             # Determine risk level
             risk_level = self._determine_risk_level(total_score)
 
             result = {
                 'score': round(total_score, 2),
+                'rule_score': round(rule_score, 2),
+                'ai_score': round(ai_score, 2) if ai_score is not None else None,
                 'risk_level': risk_level,
                 'factors': scores,
                 'is_malicious': total_score >= self.malicious_threshold,
-                'is_high_risk': total_score >= self.high_risk_threshold
+                'is_high_risk': total_score >= self.high_risk_threshold,
+                'ai': ai_result
             }
 
             logger.debug(
@@ -325,6 +341,20 @@ class MaliciousScorer:
                 explanation += (
                     f"  - {factor.replace('_', ' ').title()}: "
                     f"{factor_score:.1f} (weight: {weight}%)\n"
+                )
+
+        ai_info = scoring_result.get('ai') or {}
+        if ai_info.get('score') is not None:
+            explanation += "\nAI Contribution:\n"
+            explanation += (
+                f"  - AI Score: {ai_info.get('score'):.2f}/100 "
+                f"(weight: {self.ai_score_weight:.2f})\n"
+            )
+            if ai_info.get('label') is not None:
+                explanation += f"  - AI Label: {ai_info.get('label')}\n"
+            if ai_info.get('confidence') is not None:
+                explanation += (
+                    f"  - AI Confidence: {ai_info.get('confidence'):.2f}\n"
                 )
 
         return explanation
