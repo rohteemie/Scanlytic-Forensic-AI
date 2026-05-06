@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scanlytic Forensic AI | Quick Start</title>
+    <meta name="description" content="Quick start guide for Scanlytic Forensic AI." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="logo">Scanlytic Forensic AI</div>
+        <div class="nav-links">
+          <a href="./">Docs</a>
+          <a href="api/">API</a>
+          <a href="../">Landing</a>
+          <a class="btn btn-outline" href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="section-header">
+          <h2>Quick start</h2>
+          <p>Set up the repo locally in minutes and run your first analysis.</p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>Recommended setup</h3>
+            <pre><code>git clone https://github.com/rohteemie/Scanlytic-Forensic-AI.git
+cd Scanlytic-Forensic-AI
+./scripts/setup-dev.sh
+source .venv/bin/activate</code></pre>
+          </div>
+          <div class="card">
+            <h3>Run analysis</h3>
+            <pre><code>python -m scanlytic analyze /path/to/file
+python -m scanlytic analyze /path/to/dir --recursive</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="section-header">
+          <h2>Docker option</h2>
+          <p>Fast evaluation without local dependencies.</p>
+        </div>
+        <div class="card">
+          <pre><code>docker build -t scanlytic .
+docker run -v /path/to/files:/data scanlytic analyze /data --recursive</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Scanlytic Forensic AI</strong>
+        <p>Quick-start reference for contributors.</p>
+      </div>
+      <div>
+        <a href="./">Docs</a>
+        <a href="api/">API</a>
+        <a href="../">Landing</a>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

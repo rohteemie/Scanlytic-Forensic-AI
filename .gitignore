@@ -101,6 +101,8 @@ venv.bak/
 
 # mkdocs documentation
 /site
+!site/
+!site/**
 
 # mypy
 .mypy_cache/
@@ -123,6 +125,9 @@ Thumbs.db
 
 # CI/CD
 .github/
+!.github/
+!.github/workflows/
+!.github/workflows/**
 
 # Docker
 Dockerfile
@@ -137,6 +142,7 @@ models/*.pkl
 *.md
 !CONTRIBUTING.md
 !LICENSE
+!site/README.md
 
 # Project specific
 *.pyc

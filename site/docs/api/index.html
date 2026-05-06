@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scanlytic Forensic AI | API Reference</title>
+    <meta name="description" content="API reference overview for Scanlytic Forensic AI." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="logo">Scanlytic Forensic AI</div>
+        <div class="nav-links">
+          <a href="../">Docs</a>
+          <a href="../../">Landing</a>
+          <a href="../../package/">Package</a>
+          <a class="btn btn-outline" href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="section-header">
+          <h2>API reference overview</h2>
+          <p>
+            This index mirrors the Sphinx API structure and highlights the primary modules for
+            integration.
+          </p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>Core</h3>
+            <p>Analyzer orchestration and classification logic.</p>
+          </div>
+          <div class="card">
+            <h3>Features</h3>
+            <p>Extractors for PE, ELF, image metadata, and strings.</p>
+          </div>
+          <div class="card">
+            <h3>Scoring</h3>
+            <p>Risk scoring engine and intent classification.</p>
+          </div>
+          <div class="card">
+            <h3>Database</h3>
+            <p>Models and CRUD helpers for persistence.</p>
+          </div>
+          <div class="card">
+            <h3>Utilities</h3>
+            <p>Configuration, logging, file utilities, and exceptions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="section-header">
+          <h2>Need full API docs?</h2>
+          <p>
+            Generate the full Sphinx reference locally and publish to this directory to keep the
+            landing and docs sites synchronized.
+          </p>
+        </div>
+        <div class="card">
+          <pre><code>cd docs
+make html
+cp -r _build/html/* ../site/docs/</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Scanlytic Forensic AI</strong>
+        <p>API reference overview.</p>
+      </div>
+      <div>
+        <a href="../">Docs</a>
+        <a href="../../">Landing</a>
+        <a href="../../package/">Package</a>
+      </div>
+    </footer>
+
+    <script src="../../assets/js/main.js"></script>
+  </body>
+</html>

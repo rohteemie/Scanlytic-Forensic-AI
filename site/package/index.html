@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scanlytic Forensic AI | Package Page</title>
+    <meta
+      name="description"
+      content="Package overview, installation, and release metadata for Scanlytic Forensic AI."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="logo">Scanlytic Forensic AI</div>
+        <div class="nav-links">
+          <a href="../">Landing</a>
+          <a href="../docs/">Docs</a>
+          <a href="../docs/api/">API</a>
+          <a class="btn btn-outline" href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="section-header">
+          <h2>Package overview</h2>
+          <p>
+            Scanlytic Forensic AI packages the core forensic pipeline as a Python module and CLI.
+            The project emphasizes transparent analysis, local-first processing, and evidence-grade
+            reporting.
+          </p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>Install</h3>
+            <pre><code>git clone https://github.com/rohteemie/Scanlytic-Forensic-AI.git
+cd Scanlytic-Forensic-AI
+pip install -r requirements.txt</code></pre>
+            <p>PyPI publishing is planned. Until then, install from source.</p>
+          </div>
+          <div class="card">
+            <h3>Quick run</h3>
+            <pre><code>python -m scanlytic analyze /path/to/file
+python -m scanlytic analyze /path/to/dir --recursive</code></pre>
+            <p>CLI output includes classification, score, and report pointers.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="section-header">
+          <h2>Release metadata</h2>
+          <p>Versioning and requirements aligned with the project roadmap.</p>
+        </div>
+        <div class="grid three">
+          <div class="card">
+            <h3>Current version</h3>
+            <p>0.1.0</p>
+          </div>
+          <div class="card">
+            <h3>Python</h3>
+            <p>3.8+</p>
+          </div>
+          <div class="card">
+            <h3>License</h3>
+            <p>MIT</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Key dependencies</h2>
+          <p>Focused on forensics, ML, and reporting workflows.</p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>Analysis stack</h3>
+            <p>python-magic, pefile, pandas, numpy, scikit-learn</p>
+          </div>
+          <div class="card">
+            <h3>Reporting stack</h3>
+            <p>jinja2, matplotlib, seaborn, plotly</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="section-header">
+          <h2>Project links</h2>
+        </div>
+        <div class="grid three">
+          <a class="card link-card" href="../docs/">
+            <h3>Documentation</h3>
+            <p>Guides, architecture, and operations.</p>
+          </a>
+          <a class="card link-card" href="../docs/api/">
+            <h3>API Reference</h3>
+            <p>Module-level documentation.</p>
+          </a>
+          <a class="card link-card" href="https://github.com/rohteemie/Scanlytic-Forensic-AI">
+            <h3>Repository</h3>
+            <p>Source, issues, and roadmap.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Scanlytic Forensic AI</strong>
+        <p>Package view for the open-source forensic triage toolkit.</p>
+      </div>
+      <div>
+        <a href="../">Landing</a>
+        <a href="../docs/">Docs</a>
+        <a href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

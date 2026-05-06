@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scanlytic Forensic AI | Security</title>
+    <meta name="description" content="Security and compliance notes for Scanlytic Forensic AI." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="logo">Scanlytic Forensic AI</div>
+        <div class="nav-links">
+          <a href="./">Docs</a>
+          <a href="api/">API</a>
+          <a href="../">Landing</a>
+          <a class="btn btn-outline" href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="section-header">
+          <h2>Security posture</h2>
+          <p>
+            Scanlytic Forensic AI prioritizes safe file handling, local processing, and auditability.
+            External integrations are optional and always user-controlled.
+          </p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>Safe file handling</h3>
+            <p>Validates paths, enforces size limits, and never executes files.</p>
+          </div>
+          <div class="card">
+            <h3>Input validation</h3>
+            <p>Verifies magic numbers, sanitizes paths, and applies boundary checks.</p>
+          </div>
+          <div class="card">
+            <h3>Privacy by design</h3>
+            <p>No telemetry or personal data collection. Data remains local by default.</p>
+          </div>
+          <div class="card">
+            <h3>Audit readiness</h3>
+            <p>Deterministic reports, structured outputs, and clear logging options.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="section-header">
+          <h2>Compliance alignment</h2>
+          <p>Designed with GDPR and ISO 27001 principles in mind.</p>
+        </div>
+        <div class="grid three">
+          <div class="card">
+            <h3>GDPR</h3>
+            <p>Data minimization, local processing, exportable evidence.</p>
+          </div>
+          <div class="card">
+            <h3>ISO 27001</h3>
+            <p>Access controls, secure operations, and risk management focus.</p>
+          </div>
+          <div class="card">
+            <h3>Secure defaults</h3>
+            <p>Conservative settings with optional external integrations.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Scanlytic Forensic AI</strong>
+        <p>Security and compliance guidance.</p>
+      </div>
+      <div>
+        <a href="./">Docs</a>
+        <a href="api/">API</a>
+        <a href="../">Landing</a>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

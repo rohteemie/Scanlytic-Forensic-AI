@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scanlytic Forensic AI | Digital Forensic Triage</title>
+    <meta
+      name="description"
+      content="Scanlytic Forensic AI is an open-source forensic triage system that classifies files and scores malicious intent for rapid investigations."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="skip-link" href="#main">Skip to content</a>
+      <nav class="nav">
+        <div class="logo">Scanlytic Forensic AI</div>
+        <div class="nav-links">
+          <a href="#overview">Overview</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#compliance">Compliance</a>
+          <a href="#docs">Docs</a>
+          <a href="package/">Package Page</a>
+          <a class="btn btn-outline" href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Digital forensics, at investigation speed</p>
+          <h1>Automated forensic triage for high-trust environments.</h1>
+          <p class="lead">
+            Scanlytic Forensic AI classifies files, extracts high-signal features, and assigns
+            malicious intent scores so investigations move from backlog to evidence faster.
+            Built for security teams who need defensible, local-first analysis.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#getting-started">Get Started</a>
+            <a class="btn btn-ghost" href="package/">View Package Page</a>
+          </div>
+          <div class="hero-meta">
+            <div>
+              <span class="meta-label">Release</span>
+              <span class="meta-value">v0.1.0</span>
+            </div>
+            <div>
+              <span class="meta-label">Focus</span>
+              <span class="meta-value">Triage, scoring, reporting</span>
+            </div>
+            <div>
+              <span class="meta-label">License</span>
+              <span class="meta-value">MIT</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-panel">
+          <div class="panel-card">
+            <h3>Investigation-ready output</h3>
+            <p>JSON, CSV, and HTML reports designed to support evidence workflows.</p>
+            <div class="panel-metrics">
+              <div>
+                <span class="metric">0-100</span>
+                <span class="metric-label">Risk score</span>
+              </div>
+              <div>
+                <span class="metric">Multi-format</span>
+                <span class="metric-label">Report export</span>
+              </div>
+              <div>
+                <span class="metric">Local-only</span>
+                <span class="metric-label">Processing</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-card panel-secondary">
+            <h4>What it automates</h4>
+            <ul>
+              <li>File type classification and metadata profiling</li>
+              <li>Static feature extraction (entropy, hashes, headers)</li>
+              <li>Scoring and prioritization for analyst review</li>
+              <li>Evidence-friendly summaries for reporting</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview" class="section">
+        <div class="section-header">
+          <h2>Overview</h2>
+          <p>
+            Scanlytic Forensic AI is an open-source digital forensic triage system that shortens
+            the time between evidence acquisition and actionable insight. It is designed for
+            security teams in regulated environments who need transparent, auditable results
+            without compromising data residency.
+          </p>
+        </div>
+        <div class="grid three">
+          <div class="card reveal">
+            <h3>Faster investigations</h3>
+            <p>Reduce manual triage by ranking files using explainable scores.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Evidence-grade outputs</h3>
+            <p>Reports capture the key indicators and context needed for case files.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Local-first privacy</h3>
+            <p>Files stay on your infrastructure. External intelligence is optional.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="capabilities" class="section section-alt">
+        <div class="section-header">
+          <h2>Capabilities that matter to senior engineers</h2>
+          <p>
+            Designed as a pipeline architecture with clear separation of concerns, making it easy
+            to test, scale, and integrate into existing incident response workflows.
+          </p>
+        </div>
+        <div class="grid two">
+          <div class="card reveal">
+            <h3>Feature extraction engine</h3>
+            <p>
+              Static analysis for PE, ELF, documents, and scripts with hash computation, entropy,
+              metadata inspection, and suspicious string detection.
+            </p>
+          </div>
+          <div class="card reveal">
+            <h3>Malicious intent scoring</h3>
+            <p>
+              Weighted scoring model that blends classification confidence, feature indicators,
+              and configurable thresholds to surface the highest-risk artifacts.
+            </p>
+          </div>
+          <div class="card reveal">
+            <h3>Batch and parallel workflows</h3>
+            <p>
+              Analyze directories at scale with tuned worker pools, suitable for large evidence
+              sets or incident response sweeps.
+            </p>
+          </div>
+          <div class="card reveal">
+            <h3>Reporting and audit trail</h3>
+            <p>
+              Structured exports for SIEM ingestion, timeline analysis, and case reporting
+              workflows.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="architecture" class="section">
+        <div class="section-header">
+          <h2>Architecture highlights</h2>
+          <p>
+            Scanlytic Forensic AI follows a pipeline architecture with explicit stages for
+            validation, classification, feature extraction, scoring, and report generation.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-step reveal">
+            <span class="step-index">01</span>
+            <div>
+              <h3>Intake and validation</h3>
+              <p>Safely validates paths, file sizes, and permissions before analysis.</p>
+            </div>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="step-index">02</span>
+            <div>
+              <h3>Classification</h3>
+              <p>Determines file category and mime type to route extraction logic.</p>
+            </div>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="step-index">03</span>
+            <div>
+              <h3>Feature extraction</h3>
+              <p>Captures entropy, hashes, headers, strings, and metadata signals.</p>
+            </div>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="step-index">04</span>
+            <div>
+              <h3>Scoring</h3>
+              <p>Scores intent with configurable thresholds and risk categories.</p>
+            </div>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="step-index">05</span>
+            <div>
+              <h3>Reporting</h3>
+              <p>Exports structured output for evidence, triage, and compliance needs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="compliance" class="section section-alt">
+        <div class="section-header">
+          <h2>Compliance-ready for EU and ANZ teams</h2>
+          <p>
+            Built with local-first data handling and security best practices that align with GDPR
+            and ISO 27001 expectations.
+          </p>
+        </div>
+        <div class="grid three">
+          <div class="card reveal">
+            <h3>GDPR alignment</h3>
+            <p>Local processing, data minimization, and exportable evidence reports.</p>
+          </div>
+          <div class="card reveal">
+            <h3>ISO 27001 controls</h3>
+            <p>Secure input validation, access control checks, and audit-friendly logging.</p>
+          </div>
+          <div class="card reveal">
+            <h3>No telemetry</h3>
+            <p>Explicitly avoids unsolicited network calls and collects no personal data.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="use-cases" class="section">
+        <div class="section-header">
+          <h2>Where it fits</h2>
+          <p>
+            Useful for enterprise incident response, law enforcement triage, and security
+            research teams handling large evidence sets.
+          </p>
+        </div>
+        <div class="grid two">
+          <div class="card reveal">
+            <h3>Incident response</h3>
+            <p>Prioritize critical artifacts during time-sensitive investigations.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Forensic labs</h3>
+            <p>Standardize analysis outputs and simplify reporting workflows.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Security research</h3>
+            <p>Run repeatable classification experiments and compare datasets.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Compliance-driven teams</h3>
+            <p>Keep evidence local and produce structured reports for audits.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="getting-started" class="section section-alt">
+        <div class="section-header">
+          <h2>Getting started</h2>
+          <p>Use Docker for a quick evaluation or install locally for deeper integration.</p>
+        </div>
+        <div class="grid two">
+          <div class="card reveal">
+            <h3>Quick Docker run</h3>
+            <pre><code>docker build -t scanlytic .
+docker run -v /path/to/files:/data scanlytic analyze /data --recursive</code></pre>
+          </div>
+          <div class="card reveal">
+            <h3>Local install</h3>
+            <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m scanlytic analyze /path/to/file</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="docs" class="section">
+        <div class="section-header">
+          <h2>Documentation and package resources</h2>
+          <p>
+            Keep the product story and the technical reference separated. The GitHub Pages site
+            is dedicated to the landing experience, while the docs site hosts deeper technical
+            material and API references.
+          </p>
+        </div>
+        <div class="grid three">
+          <a class="card link-card reveal" href="docs/">
+            <h3>Documentation</h3>
+            <p>Architecture, developer guide, and operations notes.</p>
+          </a>
+          <a class="card link-card reveal" href="docs/api/">
+            <h3>API reference</h3>
+            <p>Module-level documentation generated from the codebase.</p>
+          </a>
+          <a class="card link-card reveal" href="package/">
+            <h3>Package page</h3>
+            <p>Install instructions, dependencies, and release metadata.</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section section-alt">
+        <div class="section-header">
+          <h2>Roadmap focus</h2>
+          <p>Near-term priorities highlight accuracy, automation, and evidence workflow support.</p>
+        </div>
+        <div class="grid three">
+          <div class="card reveal">
+            <h3>ML accuracy</h3>
+            <p>Improve classification accuracy with expanded training datasets.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Threat intelligence</h3>
+            <p>Optional integration with external feeds for stronger indicators.</p>
+          </div>
+          <div class="card reveal">
+            <h3>Reporting polish</h3>
+            <p>Enhanced HTML reports and SIEM-friendly export formats.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="section-header">
+          <h2>Project leadership</h2>
+          <p>
+            Maintained by Rotimi Owolabi. Open to collaboration with security teams and research
+            partners across Europe and Australia.
+          </p>
+        </div>
+        <div class="grid two">
+          <div class="card reveal">
+            <h3>GitHub</h3>
+            <p><a href="https://github.com/rohteemie/Scanlytic-Forensic-AI">Repository and issues</a></p>
+          </div>
+          <div class="card reveal">
+            <h3>Discussions</h3>
+            <p><a href="https://github.com/rohteemie/Scanlytic-Forensic-AI/discussions">Community forum</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Scanlytic Forensic AI</strong>
+        <p>Open-source forensic triage for evidence-driven teams.</p>
+      </div>
+      <div>
+        <a href="package/">Package Page</a>
+        <a href="docs/">Documentation</a>
+        <a href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
