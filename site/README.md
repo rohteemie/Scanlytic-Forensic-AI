@@ -19,5 +19,6 @@ This project uses a GitHub Actions workflow that builds Sphinx docs and deploys 
 
 ## Linking docs
 
-The landing site links to /docs and /docs/api. The workflow builds Sphinx HTML and
-copies it to /site/docs so the links stay in sync.
+The landing site links to docs/ and docs/api/ (relative to the Pages root). The
+workflow builds Sphinx HTML and copies it to site/docs/api/ so those links stay in
+sync while the hand-authored pages under site/docs/ are preserved.

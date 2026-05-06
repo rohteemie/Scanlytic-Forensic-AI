@@ -32,7 +32,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install -r requirements-dev.txt || true
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
 
       - name: Build Sphinx docs
         run: |
@@ -41,9 +41,9 @@ jobs:
 
       - name: Sync docs into site
         run: |
-          rm -rf site/docs
-          mkdir -p site/docs
-          cp -r docs/_build/html/* site/docs/
+          rm -rf site/docs/api
+          mkdir -p site/docs/api
+          cp -r docs/_build/html/* site/docs/api/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
