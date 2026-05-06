@@ -128,6 +128,11 @@ class ReportGenerator:
             'entropy',
             'suspicious_strings_count',
             'malicious_score',
+            'rule_score',
+            'ai_score',
+            'ai_label',
+            'ai_confidence',
+            'ai_status',
             'risk_level',
             'is_malicious',
             'is_high_risk'
@@ -243,6 +248,7 @@ class ReportGenerator:
         features = result.get('features', {})
         classification = result.get('classification', {})
         scoring = result.get('scoring', {})
+        ai_info = scoring.get('ai', {}) if isinstance(scoring, dict) else {}
 
         return {
             'file_name': result.get('file_name', ''),
@@ -260,6 +266,11 @@ class ReportGenerator:
                 'strings', {}
             ).get('suspicious_count', 0),
             'malicious_score': scoring.get('score', 0),
+            'rule_score': scoring.get('rule_score', ''),
+            'ai_score': scoring.get('ai_score', ''),
+            'ai_label': ai_info.get('label', ''),
+            'ai_confidence': ai_info.get('confidence', ''),
+            'ai_status': ai_info.get('status', ''),
             'risk_level': scoring.get('risk_level', ''),
             'is_malicious': scoring.get('is_malicious', False),
             'is_high_risk': scoring.get('is_high_risk', False)
@@ -312,6 +323,10 @@ class ReportGenerator:
             print(
                 f"Malicious Score: {scoring.get('score', 0):.2f}/100"
             )
+            if scoring.get('ai_score') is not None:
+                print(
+                    f"AI Score: {scoring.get('ai_score', 0):.2f}/100"
+                )
             print(f"Risk Level: {scoring.get('risk_level', '').upper()}")
             print(
                 f"Is Malicious: "

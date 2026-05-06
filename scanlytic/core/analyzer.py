@@ -8,6 +8,7 @@ and malicious intent scoring.
 from pathlib import Path
 from typing import Dict, Any, Optional
 
+from scanlytic.ai.engine import AIEngine
 from scanlytic.core.classifier import FileClassifier
 from scanlytic.features.extractor import FeatureExtractor
 from scanlytic.scoring.scorer import MaliciousScorer
@@ -53,6 +54,15 @@ class ForensicAnalyzer:
             ),
             high_risk_threshold=self.config.get(
                 'scoring.high_risk_threshold', 75
+            ),
+            ai_score_weight=self.config.get('ai.score_weight', 0.3)
+        )
+        self.ai_engine = AIEngine(
+            enabled=self.config.get('ai.enabled', False),
+            backend=self.config.get('ai.backend', 'local'),
+            model_path=self.config.get('ai.model_path'),
+            confidence_threshold=self.config.get(
+                'ai.confidence_threshold', 0.6
             )
         )
 
@@ -85,8 +95,11 @@ class ForensicAnalyzer:
             features = self.feature_extractor.extract(str(path))
             logger.debug(f"Feature extraction complete")
 
+            # AI scoring (optional)
+            ai_result = self.ai_engine.score(features, classification)
+
             # Calculate malicious score
-            scoring = self.scorer.score(features, classification)
+            scoring = self.scorer.score(features, classification, ai_result)
             logger.debug(f"Scoring complete: {scoring['score']:.2f}")
 
             # Compile results

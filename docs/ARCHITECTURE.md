@@ -29,14 +29,14 @@ Scanlytic-ForensicAI follows a **Pipeline Architecture** pattern:
 
 ```bash
 ┌──────────┐    ┌──────────────┐    ┌─────────────┐    ┌─────────┐    ┌─────────┐
-│   CLI    │───>│   Analyzer   │───>│ Classifier  │───>│Features │───>│ Scorer  │
-│ (Entry)  │    │(Orchestrator)│    │(File Type)  │    │(Extract)│    │(Risk)   │
+│   CLI    │───>│   Analyzer   │───>│ Classifier  │───>│Features │───>│  AI     │
+│ (Entry)  │    │(Orchestrator)│    │(File Type)  │    │(Extract)│    │(Opt-In) │
 └──────────┘    └──────────────┘    └─────────────┘    └─────────┘    └─────────┘
                                                                              │
                                                                              ▼
 ┌──────────┐    ┌──────────────┐                                     ┌─────────┐
-│  Output  │<───│   Reporter   |<────────────────────────────────────│ Results │
-│(JSON/CSV)│    │  (Generate)  │                                     │(Compile)│
+│  Output  │<───│   Reporter   |<────────────────────────────────────│ Scorer  │
+│(JSON/CSV)│    │  (Generate)  │                                     │ (Risk)  │
 └──────────┘    └──────────────┘                                     └─────────┘
 ```
 
@@ -92,6 +92,9 @@ scanlytic/
 │       ├── pe_extractor.py    # Windows executables
 │       ├── elf_extractor.py   # Linux executables
 │       └── image_extractor.py # Images (EXIF)
+│
+├── ai/                         # AI scoring (optional)
+│   └── engine.py              # Local model inference
 │
 ├── scoring/                    # Risk Assessment
 │   └── scorer.py              # Scoring engine

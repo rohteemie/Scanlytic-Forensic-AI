@@ -24,7 +24,7 @@
 ### Core Capabilities
 
 - Automated file type classification
-- Malicious intent risk scoring (0-100)
+- Malicious intent risk scoring (0-100) with optional AI blending
 - Multi-format file analysis
 - Integration with threat intelligence databases
 - Comprehensive forensic reports

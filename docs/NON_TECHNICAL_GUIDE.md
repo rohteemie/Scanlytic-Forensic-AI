@@ -20,6 +20,9 @@ Scanlytic-ForensicAI is like a smart sorting machine that:
 4. Gives it a danger rating
 5. Makes a list organized by danger level
 
+Optionally, it can use a local AI model to add an extra signal to the score.
+This is off by default and runs on your own machine.
+
 **Real-World Analogy:**
 
 Think of it like airport security scanning luggage:
@@ -131,6 +134,15 @@ docker run -v /path/to/folder:/data scanlytic analyze /data --recursive
 
 ```bash
 docker run -v /path/to/files:/data -v /path/to/reports:/reports scanlytic analyze /data -o /reports/report.json
+```
+
+**Optional AI Scoring (Local Only):**
+
+If you have a local AI model file, you can enable it like this:
+
+```bash
+scanlytic analyze /path/to/file.exe --ai-enabled \
+   --ai-model models/ai_baseline.joblib
 ```
 
 ### Option 2: Using Python Directly

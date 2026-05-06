@@ -137,6 +137,7 @@ docker-compose.yml
 # Data and models (will be mounted as volumes)
 data/*
 models/*.pkl
+models/*.joblib
 
 # README and docs (not needed in container)
 *.md
@@ -148,6 +149,7 @@ models/*.pkl
 *.pyc
 config/config.yaml
 models/*.pkl
+models/*.joblib
 data/*
 !data/.gitkeep
 reports/
