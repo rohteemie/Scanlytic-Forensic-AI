@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scanlytic Forensic AI | Architecture</title>
+    <meta name="description" content="Architecture overview for Scanlytic Forensic AI." />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="logo">Scanlytic Forensic AI</div>
+        <div class="nav-links">
+          <a href="./">Docs</a>
+          <a href="api/">API</a>
+          <a href="../">Landing</a>
+          <a class="btn btn-outline" href="https://github.com/rohteemie/Scanlytic-Forensic-AI">GitHub</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="section-header">
+          <h2>Architecture overview</h2>
+          <p>
+            Scanlytic Forensic AI follows a pipeline architecture, enabling deterministic,
+            auditable analysis stages while keeping each component independent and testable.
+          </p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>Core pipeline stages</h3>
+            <p>
+              Intake and validation, classification, feature extraction, scoring, and reporting
+              are executed in sequence to preserve analysis integrity.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Separation of concerns</h3>
+            <p>
+              CLI orchestration, analysis logic, feature extraction, scoring, reporting, and
+              persistence are modular to simplify extension and testing.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="section-header">
+          <h2>Component map</h2>
+          <p>Key modules and their responsibilities.</p>
+        </div>
+        <div class="grid two">
+          <div class="card">
+            <h3>cli.py</h3>
+            <p>Argument parsing, validation, and orchestration entry point.</p>
+          </div>
+          <div class="card">
+            <h3>core/analyzer.py</h3>
+            <p>Coordinates classifier, extractor, and scoring stages.</p>
+          </div>
+          <div class="card">
+            <h3>features/</h3>
+            <p>Extracts hashes, entropy, headers, strings, and metadata.</p>
+          </div>
+          <div class="card">
+            <h3>reporting/</h3>
+            <p>Generates JSON, CSV, and HTML outputs for audit trails.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Design priorities</h2>
+          <p>
+            The pipeline design promotes predictable behavior, easy testing, and integration into
+            security operations tooling.
+          </p>
+        </div>
+        <div class="grid three">
+          <div class="card">
+            <h3>Deterministic outputs</h3>
+            <p>Repeatable analysis for court-ready evidence and audits.</p>
+          </div>
+          <div class="card">
+            <h3>Extendable stages</h3>
+            <p>Add new extractors or scorers without rewriting the pipeline.</p>
+          </div>
+          <div class="card">
+            <h3>Defensible processing</h3>
+            <p>Local-first design avoids data leakage and keeps evidence intact.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Scanlytic Forensic AI</strong>
+        <p>Architecture reference for the analysis pipeline.</p>
+      </div>
+      <div>
+        <a href="./">Docs</a>
+        <a href="api/">API</a>
+        <a href="../">Landing</a>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
